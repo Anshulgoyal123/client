@@ -26,8 +26,8 @@ pipeline {
         //     steps {
         //     withSonarQubeEnv('sonarqube-9.9.3') {
         //         sh "mvn sonar:sonar"
-            }
-            }
-        }
+            // }
+            // }
+        // }
     }
 }
