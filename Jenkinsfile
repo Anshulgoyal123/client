@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Containerized the application') {
             steps {
-                sh '''docker build -t myapp:{BUILD_ID} .
-                docker run -d -p 9090:9090 --name myjavaapp:${BUILD_ID} myapp:{BUILD_ID}'''
+                sh '''docker build -t myapp:${BUILD_ID} .
+                docker run -d -p 9090:9090 --name myjavaapp:${BUILD_ID} myapp:${BUILD_ID}'''
             }
         }
     }
