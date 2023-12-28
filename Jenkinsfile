@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                git 'https://github.com/Anshulgoyal123/client.git'
-            }
-        }
+        // stage('Hello') {
+        //     steps {
+        //         git 'https://github.com/Anshulgoyal123/client.git'
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
