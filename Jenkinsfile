@@ -18,5 +18,12 @@ pipeline {
                 docker run -d -p 9090:9090 --name myjavaapp${BUILD_ID} myapp:${BUILD_ID}'''
             }
         }
+        stage('Containerized the application') {
+            steps {
+            withSonarQubeEnv('sonarqube-9.9.3') {
+                sh "mvn sonar:sonar"
+            }
+            }
+        }
     }
 }
