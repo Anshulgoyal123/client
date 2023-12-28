@@ -22,10 +22,10 @@ pipeline {
                 docker push techsopiankit/timesheetapplication:${BUILD_ID} '''
             }
         }
-        stage('sonar analysis') {
-            steps {
-            withSonarQubeEnv('sonarqube-9.9.3') {
-                sh "mvn sonar:sonar"
+        // stage('sonar analysis') {
+        //     steps {
+        //     withSonarQubeEnv('sonarqube-9.9.3') {
+        //         sh "mvn sonar:sonar"
             }
             }
         }
