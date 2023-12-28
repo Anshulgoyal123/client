@@ -11,7 +11,7 @@ COPY target/timesheet-0.0.1-SNAPSHOT.jar /app/timesheet-0.0.1-SNAPSHOT.jar
 COPY src/main/resources/application.properties /app/application.properties
 
 # Expose the port defined in application.properties
-EXPOSE 9091
+EXPOSE 9090
 
 # Specify the command to run on container startup
 CMD ["java", "-jar", "timesheet-0.0.1-SNAPSHOT.jar"]
