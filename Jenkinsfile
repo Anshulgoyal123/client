@@ -58,6 +58,6 @@ pipeline {
         // }
     }
     options {
-        timeout(time: 5, unit: 'MINUTES', result: 'SUCCESS')
+         timeout(time: 5, unit: 'MINUTES', result: 'SUCCESS')
     }
 }
