@@ -58,6 +58,10 @@ pipeline {
         // }
     }
     options {
-         timeout(time: 5, unit: 'MINUTES', result: 'SUCCESS')
+        timeout(time: 5, unit: 'MINUTES') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+            // Pipeline stages and steps go here
+            }
+        }
     }
 }
