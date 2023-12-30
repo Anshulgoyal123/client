@@ -35,11 +35,11 @@ pipeline {
                     sh "docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage"
 
             // Start MySQL service inside the container
-                    sh "docker exec -it timesheetapplication${BUILD_ID} service mysql start"
+                    sh "docker exec timesheetapplication${BUILD_ID} service mysql start"
 
             // Change to the application directory and run the JAR file
                     sh '''
-                    docker exec -it timesheetapplication${BUILD_ID} sh -c "cd /pro/client/target && java -jar timesheet-0.0.1-SNAPSHOT.jar --spring.config.location=/pro/client/src/main/resources/application.properties"
+                    docker exec timesheetapplication${BUILD_ID} sh -c "cd /pro/client/target && java -jar timesheet-0.0.1-SNAPSHOT.jar --spring.config.location=/pro/client/src/main/resources/application.properties"
                     '''
                 }
             }
