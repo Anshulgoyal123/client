@@ -12,16 +12,42 @@ pipeline {
         //         sh 'mvn clean install'
         //     }
         // }
+
+
+        
+        // stage('Containerized the application') {
+        //     steps {
+        //         sh ''' docker rm -f ${docker ps -qa} 
+        //         docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage
+        //         docker exec -it timesheetapplication${BUILD_ID} 
+        //         service mysql start
+        //         cd /pro/client/target
+        //         java -jar timesheet-0.0.1-SNAPSHOT.jar  --spring.config.location=/pro/client/src/main/resources/application.properties '''
+        //     }
+        // }
         stage('Containerized the application') {
             steps {
-                sh ''' docker rm -f ${docker ps -qa} 
-                docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage
-                docker exec -it timesheetapplication${BUILD_ID} 
-                service mysql start
-                cd /pro/client/target
-                java -jar timesheet-0.0.1-SNAPSHOT.jar  --spring.config.location=/pro/client/src/main/resources/application.properties '''
+                script {
+            // Stop and remove existing containers
+                    sh 'docker rm -f $(docker ps -qa) || true'
+
+            // Run the new container
+                    sh "docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage"
+
+            // Start MySQL service inside the container
+                    sh "docker exec -it timesheetapplication${BUILD_ID} service mysql start"
+
+            // Change to the application directory and run the JAR file
+                    sh '''
+                    docker exec -it timesheetapplication${BUILD_ID} sh -c "cd /pro/client/target && java -jar timesheet-0.0.1-SNAPSHOT.jar --spring.config.location=/pro/client/src/main/resources/application.properties"
+                    '''
+                }
             }
         }
+
+
+
+        
         // stage('sonar analysis') {
         //     steps {
         //     withSonarQubeEnv('sonarqube-9.9.3') {
