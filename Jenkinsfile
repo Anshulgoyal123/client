@@ -14,7 +14,8 @@ dpipeline {
         // }
         stage('Containerized the application') {
             steps {
-                sh ''' docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage
+                sh ''' docker rm -f ${docker ps -qa} 
+                docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage
                 docker exec -it timesheetapplication${BUILD_ID} 
                 service mysql start
                 cd /pro/client/target
