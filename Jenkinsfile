@@ -7,14 +7,14 @@ pipeline {
         //         git 'https://github.com/Anshulgoyal123/client.git'
         //     }
         // }
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'mvn clean install'
+        //     }
+        // }
         stage('Containerized the application') {
             steps {
-                sh ''' docker run -it -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheet
+                sh ''' docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheet
                 service mysql start '''
             }
         }
