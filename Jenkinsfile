@@ -39,7 +39,7 @@ pipeline {
 
             // Change to the application directory and run the JAR file
                     sh '''
-                    docker exec timesheetapplication${BUILD_ID} sh -c "cd /pro/client/target && java -jar timesheet-0.0.1-SNAPSHOT.jar --spring.config.location=/pro/client/src/main/resources/application.properties"
+                    docker exec timesheetapplication${BUILD_ID} sh -c "cd /pro/client/target && java -jar timesheet-0.0.1-SNAPSHOT.jar --spring.config.location=/pro/client/src/main/resources/application.properties > abc.txt"
                     '''
                 }
             }
@@ -57,11 +57,5 @@ pipeline {
             // }ignore
         // }
     }
-    options {
-        timeout(time: 5, unit: 'MINUTES') {
-            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-            // Pipeline stages and steps go here
-            }
-        }
-    }
+    
 }
