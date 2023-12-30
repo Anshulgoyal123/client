@@ -45,9 +45,7 @@ pipeline {
             }
         }
 
-    options {
-        timeout(time: 1, unit: 'MINUTES')
-    }
+    
 
 
         
@@ -58,5 +56,8 @@ pipeline {
             // }
             // }ignore
         // }
+    }
+    options {
+        timeout(time: 1, unit: 'MINUTES')
     }
 }
