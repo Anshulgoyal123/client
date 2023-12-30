@@ -1,4 +1,4 @@
-pipeline {
+dpipeline {
     agent any
 
     stages {
@@ -15,7 +15,10 @@ pipeline {
         stage('Containerized the application') {
             steps {
                 sh ''' docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} 9639287812/timesheet:timesheetimage
-                service mysql start '''
+                docker exec -it timesheetapplication${BUILD_ID} 
+                service mysql start
+                cd /pro/client/target
+                java -jar timesheet-0.0.1-SNAPSHOT.jar  --spring.config.location=/pro/client/src/main/resources/application.properties '''
             }
         }
         // stage('sonar analysis') {
