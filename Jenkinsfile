@@ -16,7 +16,7 @@ pipeline {
                     sh 'docker rm -f $(docker ps -qa) || true'
 
                     // Run the new container
-                    sh "docker run -dit -p 9090:9090 --name timesheetapplication${BUILD_ID} techsopiankit/timesheetapplication2:timesheetimage"
+                    sh "docker run -dit -p 9080:9080 --name timesheetapplication${BUILD_ID} techsopiankit/timesheetapplication2:timesheetimage"
 
                     // Start MySQL service inside the container
                     sh "docker exec timesheetapplication${BUILD_ID} service mysql start"
