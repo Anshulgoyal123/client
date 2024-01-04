@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                checkout scmGit(branches: [[name: '*/feature/sprint_1_dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'f6dc9638-c900-4266-af16-0828771670ba', url: 'https://ankittechsopi@bitbucket.org/techsopi-timesheet/timesheet.git']])
-                sh 'mvn clean install'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         checkout scmGit(branches: [[name: '*/feature/sprint_1_dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'f6dc9638-c900-4266-af16-0828771670ba', url: 'https://ankittechsopi@bitbucket.org/techsopi-timesheet/timesheet.git']])
+        //         sh 'mvn clean install'
+        //     }
+        // }
 
         stage('Containerized the application') {
             steps {
